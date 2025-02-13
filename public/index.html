@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Painel de Deploy</h1>
+
+        <!-- Login -->
+        <form id="login-form">
+            <label>Usuário:</label>
+            <input type="text" id="username" required>
+            
+            <label>Senha:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">🔐 Login</button>
+        </form>
+
+        <!-- Formulário de Deploy -->
+        <form id="deploy-form" class="hidden">
+            <label>Serviço:</label>
+            <input type="text" id="service" required>
+
+            <label>Branch (opcional):</label>
+            <input type="text" id="branch">
+
+            <label>Variáveis de Ambiente:</label>
+            <div id="env-vars-container"></div>
+            <button type="button" id="add-env">➕ Adicionar Variável</button>
+
+            <button type="submit">🚀 Iniciar Deploy</button>
+        </form>
+
+        <!-- Logs -->
+        <h2>📜 Logs:</h2>
+        <pre id="logs"></pre>
+    </div>
+    <script src="index.js" defer></script>
+</body>
+</html>

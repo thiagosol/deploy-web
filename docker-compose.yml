@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  deploy-web:
+    image: deploy-web
+    pull_policy: never
+    restart: always
+    container_name: deploy-web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.deploy-web.entrypoints=http"
+      - "traefik.http.routers.deploy-web.rule=Host(`web.deploy.thiagosol.com`)"
+      - "traefik.http.routers.deploy-web-secure.entrypoints=https"
+      - "traefik.http.routers.deploy-web-secure.rule=Host(`web.deploy.thiagosol.com`)"
+      - "traefik.http.routers.deploy-web-secure.tls=true"
+      - "traefik.http.routers.deploy-web-secure.service=deploy-web-secure"
+      - "traefik.http.services.deploy-web-secure.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+
+networks:
+  default:
+    external:
+     name: external-sol-apis
