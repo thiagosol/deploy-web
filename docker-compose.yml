@@ -17,7 +17,15 @@ services:
       - "traefik.http.routers.deploy-web-secure.tls=true"
       - "traefik.http.routers.deploy-web-secure.service=deploy-web-secure"
       - "traefik.http.services.deploy-web-secure.loadbalancer.server.port=80"
-      - "traefik.docker.network=proxy"
+      - "traefik.docker.network=external-sol-apis"
+    networks:
+      - external-sol-apis
+      - logging-network
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://loki:3100/loki/api/v1/push"
+        loki-external-labels: "service=deploy-web,type=service"
     deploy:
       resources:
         limits:
@@ -26,4 +34,6 @@ services:
 networks:
   default:
     external:
-     name: external-sol-apis
+      name: external-sol-apis
+  logging-network:
+    external: true
