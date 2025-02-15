@@ -32,8 +32,7 @@ services:
           memory: 50M
 
 networks:
-  default:
-    external:
-      name: external-sol-apis
   logging-network:
+    external: true
+  external-sol-apis:
     external: true
