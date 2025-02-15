@@ -26,6 +26,9 @@ services:
       options:
         loki-url: "http://loki:3100/loki/api/v1/push"
         loki-external-labels: "service=deploy-web,type=service"
+        loki-retries: "5"
+        loki-batch-size: "400"
+        mode: "non-blocking"
     deploy:
       resources:
         limits:
