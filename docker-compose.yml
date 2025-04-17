@@ -10,14 +10,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.deploy-web.entrypoints=http"
-      - "traefik.http.routers.deploy-web.rule=Host(`web.deploy.thiagosol.com`)"
-      - "traefik.http.routers.deploy-web-secure.entrypoints=https"
-      - "traefik.http.routers.deploy-web-secure.rule=Host(`web.deploy.thiagosol.com`)"
-      - "traefik.http.routers.deploy-web-secure.tls=true"
-      - "traefik.http.routers.deploy-web-secure.service=deploy-web-secure"
-      - "traefik.http.services.deploy-web-secure.loadbalancer.server.port=80"
-      - "traefik.docker.network=external-sol-apis"
+      - "traefik.http.routers.deploy-web.rule=Host(`web-deploy.thiagosol.com`)"
+      - "traefik.http.routers.deploy-web.entrypoints=https"
+      - "traefik.http.routers.deploy-web.tls=true"
+      - "traefik.http.services.deploy-web.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
     networks:
       - external-sol-apis
       - logging-network
