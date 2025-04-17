@@ -1,4 +1,4 @@
-const API_URL = "https://deploy.thiagosol.com";
+const API_URL = "https://api-deploy.thiagosol.com";
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("login-form") as HTMLFormElement;
